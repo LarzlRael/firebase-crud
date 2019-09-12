@@ -1,0 +1,68 @@
+<div class="card">
+  
+  <div class="card-body">
+    
+    <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+      <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="productosService.selectedProduct.$key">
+      <div class="form-group">
+        <input type="text" 
+        name="name" 
+        #name="ngModel" 
+        placeholder="Enter your name" class="form-control"
+        autocomplete="off" 
+        [(ngModel)]="productosService.selectedProduct.name" 
+        class="form-control" required pattern="[a-zA-Z]+">
+        
+      </div>
+      
+
+      <div class="form-group">
+        <input type="text"
+        class="form-control"
+          name="category" 
+          #category="ngModel" 
+          placeholder="Add product category"
+          [(ngModel)]="productosService.selectedProduct.category"
+          required pattern="[a-zA-Z]+">
+          
+      </div>
+
+      <div class="form-group">
+        
+        <input type="text"
+        class="form-control"
+          name="location" 
+          #location="ngModel"
+          placeholder="Add product LOcation Product"
+          [(ngModel)]="productosService.selectedProduct.location"
+          required pattern="[a-zA-Z]+">
+      </div>
+
+      <div class="form-group">
+        <input type="text"
+        class="form-control"
+        name="price" 
+        [(ngModel)]="productosService.selectedProduct.price"
+        #price="ngModel"
+        placeholder="Add price"
+        required pattern="[0-9]+"
+        >
+
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit" [disabled]="!productForm.form.valid">
+          <i class="fas fa-plus-circle"></i>Add Product
+        </button>
+        <button class="btn btn-secondary" type="reset" (click)="restForm(productForm)"
+        >
+          <i class="fas fa-sync-alt"></i>Reset
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+<span *ngIf="!name.valid && name.touched">Debes llenar correctamente el campo nombre</span><br>
+<span *ngIf="!category.valid && category.touched">Debes llenar correctamente el campo categoria</span><br>
+<span *ngIf="!location.valid && location.touched">Debes llenar correctamente el campo producto</span><br>
+<span *ngIf="!price.valid && price.touched">Solo se deben poner numeros en este campo</span>
